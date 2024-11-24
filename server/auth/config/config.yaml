@@ -1,0 +1,5 @@
+token_lifetime: 5h
+storage_path: "./storage/auth.db"
+grpc:
+  port: 15900
+  timeout: 5s

@@ -1,7 +1,10 @@
 package auth
 
+import "auth/internal/config"
+
 func main() {
-	// TODO: инициализация конфига
+
+	cfg, err := config.LoadConfig()
 
 	// TODO: инициализация логгера
 
