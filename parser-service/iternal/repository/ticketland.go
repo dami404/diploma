@@ -1,4 +1,4 @@
-package websites
+package repository
 
 import (
 	"context"
@@ -8,8 +8,7 @@ import (
 	"github.com/dami404/diploma-parser/iternal/entity"
 )
 
-func ParseTicketLand(ctx context.Context, city string, name string) []entity.Event {
-
+func (r *HTTPDBRepository) ParseTicketLand(ctx context.Context, city string, name string) []entity.Event {
 	select {
 	case <-ctx.Done():
 		log.Println("Repository.ProfitEvents.parseKassirRu: timeout")

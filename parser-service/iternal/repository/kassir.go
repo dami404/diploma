@@ -1,4 +1,4 @@
-package websites
+package repository
 
 import (
 	"context"
@@ -17,11 +17,10 @@ func parsePriceKassir(priceStr string) (int, error) {
 	return strconv.Atoi(cleaned)
 }
 
-// parseKassir fetches events from the Kassir website for a given city and event name.
-func ParseKassir(ctx context.Context, city string, name string) []entity.Event {
+func (r *HTTPDBRepository) ParseKassir(ctx context.Context, city string, name string) []entity.Event {
 	select {
 	case <-ctx.Done():
-		log.Println("Repository.ProfitEvents.parseKassirRu: timeout")
+		log.Println("Repository.ProfitEvents.ParseKassir: timeout")
 		return nil
 	default:
 		cityToUrl := map[string]string{
@@ -100,10 +99,9 @@ func ParseKassir(ctx context.Context, city string, name string) []entity.Event {
 				log.Printf("Parsing event: name-%s, location-%s, url-%s", officialName, location, ticketsPageUrl)
 
 				mu.Lock()
-				tickets, err := parseTickets(ctx, page, cityToUrl[city]+ticketsPageUrl, location)
+				tickets, err := parseTicketsKassir(ctx, page, cityToUrl[city]+ticketsPageUrl, location)
 				if err != nil {
 					log.Printf("Error parsing tickets for %s: %v", officialName, err)
-					// return
 				}
 
 				events = append(events, entity.Event{
@@ -120,8 +118,7 @@ func ParseKassir(ctx context.Context, city string, name string) []entity.Event {
 	}
 }
 
-// parseTickets parses ticket information for a given event page.
-func parseTickets(ctx context.Context, page playwright.Page, url, location string) ([]entity.Ticket, error) {
+func parseTicketsKassir(ctx context.Context, page playwright.Page, url, location string) ([]entity.Ticket, error) {
 	if _, err := page.Goto(url); err != nil {
 		return nil, err
 	}
@@ -134,7 +131,7 @@ func parseTickets(ctx context.Context, page playwright.Page, url, location strin
 	var tickets []entity.Ticket
 
 	if isOneDate {
-		ticket, err := parseSingleTicket(page, location)
+		ticket, err := parseSingleTicketKassir(page, location)
 		if err != nil {
 			return nil, err
 		}
@@ -154,7 +151,7 @@ func parseTickets(ctx context.Context, page playwright.Page, url, location strin
 				continue
 			}
 
-			ticket, err := parseSingleTicket(page, location)
+			ticket, err := parseSingleTicketKassir(page, location)
 			if err != nil {
 				log.Printf("Error parsing ticket: %v", err)
 				continue
@@ -166,7 +163,7 @@ func parseTickets(ctx context.Context, page playwright.Page, url, location strin
 	return tickets, nil
 }
 
-func parseSingleTicket(page playwright.Page, location string) (entity.Ticket, error) {
+func parseSingleTicketKassir(page playwright.Page, location string) (entity.Ticket, error) {
 	price, err := page.Locator(".flex.cursor-pointer.select-none").First().TextContent()
 	if err != nil {
 		return entity.Ticket{}, err
