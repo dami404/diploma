@@ -1,0 +1,3 @@
+port: 8081
+host: parser-service
+db_url: http://db-service:8082

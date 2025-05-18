@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  nginx:
+      image: nginx:latest
+      container_name: nginx
+      ports:
+        - "80:80"
+        - "443:443" # Для HTTPS
+      volumes:
+        - ./nginx.conf:/etc/nginx/nginx.conf
+      depends_on:
+        - web
+        - db-service
+        - parser
+      networks:
+        - app-network
+  # Сервис базы данных (PostgreSQL)
+  db:
+    image: postgres:15-alpine
+    container_name: db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: tickets_db
+    volumes:
+      - ./storage/init.sql:/docker-entrypoint-initdb.d/init.sql # Инициализация базы данных
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d tickets_db -U user"]
+      interval: 1s
+      timeout: 2s
+      retries: 5
+
+  # Микросервис базы данных
+  db-service:
+    build:
+      context: ./db-service
+      dockerfile: Dockerfile
+    container_name: db-service
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8082:8082"
+    networks:
+      - app-network
+
+  # Парсер-сервис
+  parser:
+    build:
+      context: ./parser-service
+      dockerfile: Dockerfile
+    container_name: parser-service
+    depends_on:
+      - db-service
+    ports:
+      - "8081:8081"
+    networks:
+      - app-network
+
+  web:
+    build:
+      context: ./web-service
+      dockerfile: Dockerfile
+    container_name: web-service
+    depends_on:
+      - db-service
+    ports:
+      - "8083:8083"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выгодные Билеты</title>
+    <link rel="stylesheet" href="/static/styles.css"/>
+    <link rel="icon" href="https://icons8.com/icon/68295/ticket" type="image/x-icon">
+</head>
+<body>
+
+    <div id="start-page" class="page">
+        <h1>Куда хотите сходить?</h1>
+        <input type="text" placeholder="Название мероприятия" id="search-input">
+        <div id="error-message" class="error-message hidden">Обязательное поле</div>
+        <label for="city-select">Выберите город:</label>
+        <select id="city-select">
+            <option value="msk">Москва</option>
+            <option value="spb">Санкт-Петербург</option>
+            <option value="ekb">Екатеринбург</option>
+        </select>
+        <button id="search-button">Найти</button>
+        <h3 id="popular-title"></h3>
+        <ol id="popular-list"></ol>
+    </div>
+    
+    <div id="loading-page" class="page hidden">
+        <button class="back-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg></button>
+        <h2>Вот, что мы нашли:</h2>
+        <p>Поиск выгодных предложений...</p>
+        <div class="loader-container">
+            <div class="loader"></div>
+        </div>
+    </div>
+    
+    <div id="results-page" class="page hidden">
+        <button class="back-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg></button>
+        <h2>Вот, что мы нашли:</h2>
+        <div id="results-list">
+
+        </div>
+    </div>
+
+    <div id="not-found-page" class="page hidden">
+        <button class="back-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/>
+            </svg>
+        </button>
+        <h2>Ничего не найдено</h2>
+        <p>Мы не смогли найти билеты на это мероприятие. Попробуйте изменить запрос.</p>
+    </div>
+</body>
+
+<footer>
+    <script src="/static/script.js"></script>
+</footer>
+
+</html>

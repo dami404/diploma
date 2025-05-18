@@ -1,0 +1,4 @@
+port: 8083
+host: web-service
+db_url: http://db-service:8082
+url: http://parser-service:8081

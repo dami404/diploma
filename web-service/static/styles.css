@@ -1,0 +1,458 @@
+* {
+    margin: 0;
+    /* padding: 0; */
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.page {
+    width: 320px;
+    height: 200px; /* Фиксированная высота */
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow-y: scroll; /* Добавляем прокрутку при необходимости */
+}
+
+.hidden {
+    display: none;
+}
+
+#start-page h1 {
+    margin-bottom: 20px;
+}
+
+#start-page input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#start-page button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+#start-page button:hover {
+    background-color: #0056b3;
+}
+
+#loading-page h2,
+#not-found-page h2,
+#results-page-1 h2,
+#results-page-2 h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#results-page{
+    height: 200px; /* Высота блока */
+  overflow-y: scroll;
+}
+
+#loading-page p {
+    margin-bottom: 20px;
+}
+
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#not-found-page ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.result-item {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.price-diff {
+    font-weight: bold;
+}
+
+.positive {
+    color: red;
+}
+
+.negative {
+    color: green;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.error-message.hidden {
+    display: none;
+}
+
+#popular-title {
+    margin-top: 20px;
+    font-size: 15px;
+    color: #333;
+    text-align: left;
+}
+
+#popular-list {
+    list-style-type: decimal; /* Нумерация */
+    padding-left: 20px;
+    text-align: left;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#popular-list li {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+#popular-list a {
+    color: #3498db;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#popular-list a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+/* --------------------------------- --------------------------------- --------------------------------- --------------------------------- --------------------------------- --------------------------------- --------------------------------- --------------------------------- */
+
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 10px;
+}
+
+.page {
+    width: 360px; /* Подходит для Telegram Web Apps */
+    max-width: 100%;
+    height: auto;
+    min-height: 400px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: left;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* === Заголовки и текст === */
+
+h1,
+h2,
+h3 {
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+/* === Стартовая страница === */
+
+#start-page h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+#start-page input {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+#start-page input:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+#start-page select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    appearance: none;
+}
+
+#start-page button {
+    width: 100%;
+    padding: 12px;
+    background-color: #3498db;
+    color: white;
+    font-size: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+#start-page button:hover {
+    background-color: #2980b9;
+}
+
+/* === Сообщение об ошибке === */
+
+.error-message {
+    color: red;
+    font-size: 13px;
+    margin-top: -8px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.error-message.hidden {
+    display: none;
+}
+
+/* === Популярные мероприятия === */
+
+#popular-title {
+    font-size: 14px;
+    color: #666;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+#popular-list {
+    list-style-type: decimal;
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+#popular-list li {
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+#popular-list a {
+    color: #3498db;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+#popular-list a:hover {
+    text-decoration: underline;
+}
+
+/* === Лоадер === */
+
+.loader-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.loader {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* === Кнопка "Назад" === */
+
+.back-button {
+    top: 15px;
+    left: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.back-button svg {
+    fill: #666;
+    transition: fill 0.2s ease;
+}
+
+.back-button:hover svg {
+    fill: #333;
+}
+
+/* === Результаты поиска === */
+
+#results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+.result-item {
+    padding: 12px;
+    background-color: #fafafa;
+    border-radius: 10px;
+    border-left: 4px solid #3498db;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease;
+} 
+
+.result-item {
+    padding: 12px;
+    background-color: #fafafa;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 16px;
+    word-wrap: break-word; /* Оборачивает длинный текст */
+    max-width: 100%; /* Ограничивает ширину */
+}
+
+.result-item:hover {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.ticket-location {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 4px;
+}
+
+.ticket-name {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.ticket-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #888;
+}
+
+.ticket-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #888;
+    text-decoration: none;
+    padding: 8px 4px;
+    border-top: 1px solid #eee;
+    margin-top: 6px;
+}
+
+.ticket-details:hover {
+    background-color: #f0f0f0;
+    color: #3498db;
+}
+
+.result-item {
+    padding: 12px;
+    background-color: #fafafa;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    margin-bottom: 16px;
+}
+
+.ticket-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.ticket-location {
+    font-size: 14px;
+    color: #777;
+    margin-left: 16px;
+    margin-top: 6px;
+    font-weight: 500;
+}
+
+.ticket-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #888;
+    text-decoration: none;
+    padding: 6px 20px;
+    border-top: 1px solid #eee;
+}
+
+.ticket-details:hover {
+    background-color: #f0f0f0;
+    color: #3498db;
+}
+
+.lowest-price {
+    color: green;
+    font-weight: bold; /* По желанию */
+}
