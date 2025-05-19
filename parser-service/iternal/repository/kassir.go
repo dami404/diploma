@@ -13,7 +13,8 @@ import (
 
 // parsePriceKassir parses the price string into an integer.
 func parsePriceKassir(priceStr string) (int, error) {
-	cleaned := strings.ReplaceAll(strings.ReplaceAll(priceStr, "\u00a0", ""), " ", "")
+	cleaned := strings.ReplaceAll(priceStr, "\u00a0", "")
+	cleaned = strings.ReplaceAll(cleaned, " ", "")
 	return strconv.Atoi(cleaned)
 }
 

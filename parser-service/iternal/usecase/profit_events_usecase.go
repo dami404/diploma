@@ -30,8 +30,8 @@ func (uc *parserUsecase) ProfitEvents(event entity.Event) []entity.Event {
 	events := []entity.Event{}
 	parsers := []func(context.Context, string, string) []entity.Event{
 		// uc.repo.ParseKassir,
-		uc.repo.ParseBileter,
-		// uc.repo.ParseTicketLand,
+		// uc.repo.ParseBileter,
+		uc.repo.ParseTicketLand,
 	}
 
 	for _, parser := range parsers {

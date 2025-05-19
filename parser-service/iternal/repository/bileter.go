@@ -12,7 +12,8 @@ import (
 )
 
 func parsePriceBileter(priceStr string) (int, error) {
-	cleaned := strings.ReplaceAll(strings.ReplaceAll(priceStr, "от", ""), " ", "")
+	cleaned := strings.ReplaceAll(priceStr, "от", "")
+	cleaned = strings.ReplaceAll(cleaned, " ", "")
 	return strconv.Atoi(cleaned)
 }
 
